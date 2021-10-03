@@ -1,0 +1,20 @@
+section {
+    width: 500px;
+    height: 500px;
+    background-color: #735d78;
+}
+
+#rgba {
+    height: 50%;
+    width: 50%;
+    /* background-color: rgba(209, 179, 196, 0.5); */
+    /* using hex for alpha */
+    background-color: #d1b3c480;
+}
+
+#alpha {
+    height: 50%;
+    width: 50%;
+    background-color: rgb(216, 140, 154);
+    opacity: 0.3;
+}

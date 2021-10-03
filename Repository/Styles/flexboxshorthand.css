@@ -1,0 +1,28 @@
+h2 {
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    border: 5px solid black;
+    height: 500px;
+    display: flex;
+}
+
+.sidebarleft {
+    background-color: #248232;
+    /* border: 2px solid white; */
+    flex: 1 2 300px;
+}
+
+.maincontent {
+    background-color: #ffffff;
+    flex: 2 1 800px;
+}
+
+.sidebarright {
+    background-color: #d90429;
+    flex: 1 2 300px;
+}

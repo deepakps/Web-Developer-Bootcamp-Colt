@@ -1,0 +1,21 @@
+* {
+    background-color: #dee2e6;
+}
+
+img {
+    width: 30%;
+    height: 650px;
+    margin: calc(8%/6);
+}
+
+nav {
+    color: #3d405b;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ced4da;
+    width: 30%;
+    margin: calc(8%/6);
+    padding: 20px 0;
+}

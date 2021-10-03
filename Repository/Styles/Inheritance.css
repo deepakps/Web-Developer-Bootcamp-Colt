@@ -1,0 +1,30 @@
+body {
+    color: darkmagenta;
+}
+
+
+/* Inheritance check */
+
+
+/* p {
+    color: darkorange;
+} */
+
+
+/* 
+section {
+    color: darkred;
+} */
+
+
+/* certain elements do not get inherited */
+
+form {
+    color: indianred;
+}
+
+
+/* button,
+input {
+    color: inherit;
+} */

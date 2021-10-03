@@ -1,0 +1,21 @@
+h2 {
+    color: cornflowerblue;
+    /* background-color: saddlebrown; */
+    background-color: rgb(89, 151, 0);
+}
+
+button {
+    /* color: sandybrown; */
+    color: #6632a8;
+    background-color: wheat;
+}
+
+p {
+    color: peru;
+    background: aquamarine;
+}
+
+body {
+    /* background-color: #dd2288; */
+    background-color: #d28;
+}

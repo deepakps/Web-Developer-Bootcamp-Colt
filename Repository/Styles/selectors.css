@@ -1,0 +1,155 @@
+/* universal selector */
+
+* {
+    color: #6d6875;
+    background-color: #fefae0;
+}
+
+
+/* element selector */
+
+h2,
+h3 {
+    color: rebeccapurple;
+    /* background-color: #faedcd; */
+}
+
+button {
+    color: #a8dadc;
+    /* !important e.g. */
+    /* color: #a8dadc !important; */
+    background-color: #1d3557;
+}
+
+span {
+    color: #f77f00;
+    /* background-color: #faedcd; */
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* id selector */
+
+#signup {
+    color: #00ffff;
+    background-color: #606c38;
+}
+
+
+/* class selector */
+
+.tag {
+    color: #b5179e;
+    background-color: #4cc9f0;
+    font-size: 20px;
+}
+
+
+/* descendent selector */
+
+footer a {
+    color: #81b29a;
+}
+
+.post a {
+    color: #3d405b;
+}
+
+
+/* Adjucent selector */
+
+
+/* input+button {
+    background-color: #370617;
+} */
+
+h3+button {
+    background-color: #1b4332;
+}
+
+
+/* Direct descendent */
+
+footer>a {
+    color: #16697a;
+}
+
+
+/* Attribute selector */
+
+input [type="password"] {
+    color: #fe5f55;
+}
+
+
+/* section[class="post"] {
+    background-color: #a8dadc;
+} */
+
+a[href*="Elephant"] {
+    color: #c8553d;
+}
+
+
+/* Pseudo classes */
+
+button:hover {
+    color: #1d3557;
+    background-color: #a8dadc;
+}
+
+.post button:hover {
+    color: #5d2e46;
+    background-color: #d0ada7;
+}
+
+.post button:active {
+    color: #f1e3d3;
+    background-color: rebeccapurple;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* nth-of-type */
+
+
+/* .post {
+    background-color: #faedcd;
+} */
+
+
+/* applicable only for 3 element. */
+
+
+/* .post:nth-of-type(3) {
+    background-color: #faedcd;
+} */
+
+
+/* applicable only for every alternate 3rd element. */
+
+.post:nth-of-type(3n) {
+    background-color: #faedcd;
+}
+
+
+/* Pseudo elements */
+
+h3::first-letter {
+    font-size: 30px;
+}
+
+p::first-line {
+    color: #370617;
+}
+
+::selection {
+    color: #f1faee;
+    background-color: #a8dadc;
+}
