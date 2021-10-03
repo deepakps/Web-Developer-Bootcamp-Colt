@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random</title>
+</head>
+
+<body>
+    <h1> Your Random no. is :
+        <!-- <%= Math.floor(Math.random() * 10) + 1 %> -->
+        <%= num %>
+    </h1>
+    <% if(num % 2 === 0){ %>
+        <h2>This is a Even no.!</h2>
+        <%} else{ %>
+            <h2>This is a Odd no.!</h2>
+            <% } %>
+                <h3>This number is :
+                    <%= num % 2 === 0 ? 'Even' : 'Odd' %>
+                </h3>
+</body>
+
+</html>

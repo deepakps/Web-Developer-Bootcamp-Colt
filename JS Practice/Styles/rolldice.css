@@ -1,0 +1,22 @@
+.square {
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    font-size: 55px;
+    font-weight: 900;
+    text-align: center;
+}
+
+#board {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    margin: 0 auto;
+    width: 300px;
+    flex-wrap: wrap;
+}
+
+.buttonArea {
+    display: flex;
+    justify-content: center;
+}
