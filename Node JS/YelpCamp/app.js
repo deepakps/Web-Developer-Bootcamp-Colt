@@ -15,6 +15,10 @@ const { validate } = require('./models/campground');
 const campgrounds = require('./routes/campgrounds');
 const reviews = require('./routes/reviews');
 
+const passport = require('passport');
+const LocatStrategy = require('passport-local');
+const User = require('./models/user');
+
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -48,11 +52,29 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocatStrategy(User.authenticate()));
+
+// serializeUser indicate how to serialize user that indicate how do we store user in the session.
+// date - 18th Nov, 2021.
+passport.serializeUser(User.serializeUser());
+
+// serializeUser indicate how to deserialize user that indicate how do we get user from the session.
+// date - 18th Nov, 2021.
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 });
+
+// app.get('/fakeuser', async(req, res) => {
+//     const user = new User({ email: 'deepakps.shinde@live.com', username: 'deepakps' });
+//     const newUser = await User.register(user, 'pappa');
+//     res.send(newUser);
+// });
 
 app.use('/campgrounds', campgrounds);
 app.use('/campgrounds/:id/reviews', reviews);
