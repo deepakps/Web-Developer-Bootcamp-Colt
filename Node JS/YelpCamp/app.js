@@ -12,8 +12,9 @@ const Campgrouond = require('./models/campground');
 const Review = require('./models/review');
 const { validate } = require('./models/campground');
 
-const campgrounds = require('./routes/campgrounds');
-const reviews = require('./routes/reviews');
+const userRoutes = require('./routes/users');
+const campgroundsRoutes = require('./routes/campgrounds');
+const reviewsRoutes = require('./routes/reviews');
 
 const passport = require('passport');
 const LocatStrategy = require('passport-local');
@@ -76,8 +77,9 @@ app.use((req, res, next) => {
 //     res.send(newUser);
 // });
 
-app.use('/campgrounds', campgrounds);
-app.use('/campgrounds/:id/reviews', reviews);
+app.use('/', userRoutes);
+app.use('/campgrounds/:id/reviews', reviewsRoutes);
+app.use('/campgrounds', campgroundsRoutes);
 
 app.get('/', (req, res) => {
     res.render('home');
