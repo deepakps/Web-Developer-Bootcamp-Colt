@@ -29,16 +29,19 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 router.post('/', isLoggedIn, validateCampground, asyncErrorCatch(async(req, res, next) => {
     // if (!req.body.campground) throw new ExpressError('400', 'Invalid Campground Data!');
-    const campground = new Campgrouond(req.body);
+    const camp = new Campgrouond(req.body);
 
-    await campground.save();
+    camp.campground.author = req.user._id;
+    console.log(camp);
+
+    await camp.save();
     req.flash('success', 'Successfully created new Campground!');
-    res.redirect(`/campgrounds/${campground.id}`);
+    res.redirect(`/campgrounds/${camp.id}`);
 }));
 
 router.get('/:id', asyncErrorCatch(async(req, res) => {
-    const camp = await Campgrouond.findById(req.params.id).populate('campground.reviews');
-    // console.log(camp.campground.reviews);
+    const camp = await Campgrouond.findById(req.params.id).populate('campground.reviews').populate('campground.author');
+
     if (!camp) {
         req.flash('error', 'Cannot find that campground!');
         return res.redirect('/campgrounds');
@@ -52,6 +55,7 @@ router.get('/:id/edit', isLoggedIn, asyncErrorCatch(async(req, res) => {
         req.flash('error', 'Cannot find that campground!');
         return res.redirect('/campgrounds');
     }
+    console.log(camp);
     res.render('campgrounds/edit', { camp });
 }));
 
@@ -59,7 +63,19 @@ router.put('/:id', isLoggedIn, validateCampground, asyncErrorCatch(async(req, re
     //res.send('It Worked!');
     const { id } = req.params;
 
+    const oldCamp = await Campgrouond.findById(id);
+    //console.log(oldCamp);
+
+    if (oldCamp.campground.author)
+        req.body.campground.author = oldCamp.campground.author;
+
+    if (oldCamp.campground.reviews)
+        req.body.campground.reviews = oldCamp.campground.reviews;
+
+    //console.log(req.body);
+
     const camp = await Campgrouond.findByIdAndUpdate(id, req.body);
+
     req.flash('success', 'Successfully updated Campground!');
     res.redirect(`/campgrounds/${camp._id}`);
 }));

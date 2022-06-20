@@ -10,7 +10,6 @@ const asyncErrorCatch = require('../utils/asyncErrorCatch');
 
 const validateReview = (req, res, next) => {
     const { error } = reviewSchema.validate(req.body);
-    // console.log(error);
     if (error) {
         const message = error.details.map(er => er.message).join(',');
 
@@ -23,7 +22,7 @@ const validateReview = (req, res, next) => {
 router.post('/', validateReview, asyncErrorCatch(async(req, res) => {
     const camp = await Campgrouond.findById(req.params.id);
     const review = new Review(req.body);
-    // console.log(req.params);
+
     camp.campground.reviews.push(review);
     await review.save();
     await camp.save();
