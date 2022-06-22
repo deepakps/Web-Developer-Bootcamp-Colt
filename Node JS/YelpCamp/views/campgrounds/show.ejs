@@ -21,16 +21,18 @@
                     <li class="list-group-item">$
                         <%= camp.campground.price %>/night</li>
                 </ul>
-                <div class="card-body">
-                    <a class="link-warning btn btn-link" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
-                    <form class="d-inline" action="/campgrounds/<%=camp._id%>?_method=DELETE" method="post">
-                        <button class="link-danger btn btn-link">Delete</BUtton>
-                    </form>
-                </div>
-                <div class="card-footer text-muted">
-                    <div>2 mins ago</div>
-                    <a href="/campgrounds">back to Campgrounds</a>
-                </div>
+                <% if(currentUser && camp.campground.author.equals(currentUser._id)) { %>
+                    <div class="card-body">
+                        <a class="link-warning btn btn-link" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
+                        <form class="d-inline" action="/campgrounds/<%=camp._id%>?_method=DELETE" method="post">
+                            <button class="link-danger btn btn-link">Delete</BUtton>
+                        </form>
+                    </div>
+                    <% } %>
+                        <div class="card-footer text-muted">
+                            <div>2 mins ago</div>
+                            <a href="/campgrounds">back to Campgrounds</a>
+                        </div>
             </div>
         </div>
         <div class="col-6">

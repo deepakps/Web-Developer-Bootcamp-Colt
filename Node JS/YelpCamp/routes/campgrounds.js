@@ -64,20 +64,27 @@ router.put('/:id', isLoggedIn, validateCampground, asyncErrorCatch(async(req, re
     const { id } = req.params;
 
     const oldCamp = await Campgrouond.findById(id);
-    //console.log(oldCamp);
 
-    if (oldCamp.campground.author)
-        req.body.campground.author = oldCamp.campground.author;
+    if (!oldCamp) {
+        req.flash('error', 'Cannnot find the Campground!');
+        res.redirect(`/campgrounds`);
+    } else if (!oldCamp.campground.author.equals(req.user._id)) {
+        req.flash('error', 'You do not have permission to perform this action!');
+        res.redirect(`/campgrounds/${id}`);
+    } else {
+        if (oldCamp.campground.author)
+            req.body.campground.author = oldCamp.campground.author;
 
-    if (oldCamp.campground.reviews)
-        req.body.campground.reviews = oldCamp.campground.reviews;
+        if (oldCamp.campground.reviews)
+            req.body.campground.reviews = oldCamp.campground.reviews;
 
-    //console.log(req.body);
+        //console.log(req.body);
 
-    const camp = await Campgrouond.findByIdAndUpdate(id, req.body);
+        const camp = await Campgrouond.findByIdAndUpdate(id, req.body);
 
-    req.flash('success', 'Successfully updated Campground!');
-    res.redirect(`/campgrounds/${camp._id}`);
+        req.flash('success', 'Successfully updated Campground!');
+        res.redirect(`/campgrounds/${camp._id}`);
+    }
 }));
 
 router.delete('/:id', isLoggedIn, asyncErrorCatch(async(req, res) => {
